@@ -8,7 +8,7 @@ To suggest the meeting room which is more suitable for users’ needs.
 The most compatible meeting room suggestions.
 
 ## DESIGN AND ARCHITECTURE
-
+![Architecture](https://github.com/Gayatrivk22/meeting_planner/blob/main/imgreadme.png?raw=true)
 - **Backend**
 The rule-based matching algorithm to filter
 
