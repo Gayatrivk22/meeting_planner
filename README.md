@@ -16,14 +16,14 @@ The rule-based matching algorithm to filter
 * Database Design
   -Created Database
 * User Interface Design
-  -PAGE 1
+  - PAGE 1
     -Enter the requirements
-  -PAGE 2
+  - PAGE 2
     -Display the meeting suggestions
-  -FEATURES
-    -Time/Date    : When the user wants to reserve the meeting room.
-    -Capacity     : How many people are supposed to the meeting room.
-    -Meeting type : Internal use/Client-with use
-    -Location     : Which office is preferred
-    -Type of room : Features of the room preferred
-    -Frequency    : Recurring / Non-recurring
+  - FEATURES
+    - Time/Date    : When the user wants to reserve the meeting room.
+    - Capacity     : How many people are supposed to the meeting room.
+    - Meeting type : Internal use/Client-with use
+    - Location     : Which office is preferred
+    - Type of room : Features of the room preferred
+    - Frequency    : Recurring / Non-recurring
