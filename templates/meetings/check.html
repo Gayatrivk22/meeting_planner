@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Check Room Availability{% endblock %}
+
+{% block content %}
+    <h1>Check Room Availability</h1>
+    
+    <div class="card form-card">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="help-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="help-text" style="color: var(--error)">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
+            <div class="form-actions">
+                <a href="{% url 'welcome' %}" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Check Availability</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

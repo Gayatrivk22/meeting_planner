@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <h1>Welcome to the Meeting Planner!</h1>
+    <div class="card">
+        <p>
+            This is the demo application for the course
+            <em>Django: Getting Started</em>
+            on <a href="https://www.pluralsight.com" target="_blank">Pluralsight</a>.
+        </p>
+    </div>
+
+    {% if user.is_authenticated %}
+        <h2>Meetings</h2>
+        <div class="actions">
+            <a href="{% url 'new' %}" class="btn btn-primary">Create New Meeting</a>
+            <a href="{% url 'rooms' %}" class="btn btn-secondary">View Rooms</a>
+            <a href="{% url 'check' %}" class="btn btn-secondary">Select Rooms</a>
+        </div>
+
+        <ul class="list">
+            {% for meeting in meetings %}
+                <li class="card">
+                    <a href="{% url 'detail' meeting.id %}">
+                        {{ meeting.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
