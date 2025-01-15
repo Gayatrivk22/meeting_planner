@@ -9,7 +9,7 @@ The most compatible meeting room suggestions.
 
 ## DESIGN AND ARCHITECTURE
 
--**Backend**
+- **Backend**
 The rule-based matching algorithm to filter
 
 * Technology Stack : Django Web Framework for Python
