@@ -3,11 +3,11 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-    <h1>Welcome to the Meeting Planner!</h1>
+    <h1>Welcome to the Orchestator!</h1>
     <div class="card">
         <p>
-            This is the demo application for the course
-            <em>Django: Getting Started</em>
+            This is the an application where you can create a new meeting based on available rooms tailored to your constraints!
+            <em>Getting Started</em>
             on <a href="https://www.pluralsight.com" target="_blank">Pluralsight</a>.
         </p>
     </div>
@@ -23,9 +23,20 @@
         <ul class="list">
             {% for meeting in meetings %}
                 <li class="card">
-                    <a href="{% url 'detail' meeting.id %}">
-                        {{ meeting.title }}
-                    </a>
+                    <div class="meeting-header">
+                        <a href="{% url 'detail' meeting.id %}">
+                            {{ meeting.title }}
+                        </a>
+                        <span class="meeting-status">Reserved</span>
+                    </div>
+                    <div class="meeting-details">
+                        <p><strong>Date:</strong> {{ meeting.date }}</p>
+                        <p><strong>Time:</strong> {{ meeting.start_time }} - {{ meeting.end_time }}</p>
+                        <p><strong>Room:</strong> {{ meeting.room.name }} ({{ meeting.room.room_type_display }})</p>
+                        {% if meeting.comments %}
+                            <p><strong>Comments:</strong> {{ meeting.comments }}</p>
+                        {% endif %}
+                    </div>
                 </li>
             {% endfor %}
         </ul>

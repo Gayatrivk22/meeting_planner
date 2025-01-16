@@ -10,12 +10,41 @@ class Room(models.Model):
     room_number = models.IntegerField()
     capacity = models.IntegerField(default=10, help_text="Maximum number of people")
     is_private = models.BooleanField(default=False)
+    
+    # Room types will be determined automatically based on capacity
     ROOM_TYPES = [
-        ('SMALL', 'Small Meeting Room'),
-        ('LARGE', 'Large Meeting Room'),
-        ('CONF', 'Conference Room'),
+        ('SMALL', 'Small Meeting Room (2 or less people)'),
+        ('LARGE', 'Large Meeting Room (3-10 people)'),
+        ('CONF', 'Conference Room (11+ people)'),
     ]
-    room_type = models.CharField(max_length=10, choices=ROOM_TYPES, default='SMALL')
+    
+    # Amenities
+    AMENITIES = [
+        ('PROJ', 'Projector'),
+        ('TV', 'TV Screen'),
+        ('WHBD', 'Whiteboard'),
+        ('VC', 'Video Conferencing'),
+        ('PHONE', 'Conference Phone'),
+        ('COFFEE', 'Coffee Machine'),
+        ('WATER', 'Water Dispenser'),
+    ]
+    amenities = models.JSONField(default=list, help_text="List of amenities available in the room")
+    
+    @property
+    def room_type(self):
+        if self.capacity <= 2:
+            return 'SMALL'
+        elif self.capacity <= 10:
+            return 'LARGE'
+        else:
+            return 'CONF'
+            
+    @property
+    def room_type_display(self):
+        return dict(self.ROOM_TYPES)[self.room_type]
+    
+    def __str__(self):
+        return f"{self.name} on floor {self.floor}: room no. {self.room_number}"
     
 
 class Meeting(models.Model):
@@ -33,9 +62,9 @@ class Meeting(models.Model):
 
 class Check(models.Model):
     # Room requirements
-    capacity = models.IntegerField(default=10, help_text="Maximum number of people")
+    capacity = models.IntegerField(default=2, help_text="Number of people")
     is_private = models.BooleanField(default=False)
-    room_type = models.CharField(max_length=10, choices=Room.ROOM_TYPES, default='SMALL')
+    required_amenities = models.JSONField(default=list, help_text="List of required amenities")
 
     # Time requirements
     date = models.DateField(default=datetime.today())
@@ -54,14 +83,17 @@ class Check(models.Model):
         return not meetings.exists()
     
     @staticmethod
-    def find_available_rooms(date, start_time, end_time, capacity, room_type, is_private):
+    def find_available_rooms(date, start_time, end_time, capacity, is_private, required_amenities):
         """Find available rooms that match requirements"""
         # Get all rooms that meet basic requirements
         rooms = Room.objects.filter(
             capacity__gte=capacity,
-            room_type=room_type,
             is_private=is_private
         )
+        
+        # Filter rooms by required amenities
+        if required_amenities:
+            rooms = [room for room in rooms if all(amenity in room.amenities for amenity in required_amenities)]
         
         # Check each room's availability
         available_rooms = []

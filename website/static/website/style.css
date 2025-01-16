@@ -25,12 +25,12 @@ body {
 /* Navigation */
 .navbar {
     background-color: var(--surface);
-    padding: 1rem 2rem;
+    padding: 1.5rem 2.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .nav-brand {
@@ -43,14 +43,14 @@ body {
 .nav-user {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 /* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 2.5rem;
 }
 
 /* Typography */
@@ -58,19 +58,22 @@ h1 {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 h2 {
     font-size: 1.875rem;
     font-weight: 600;
     color: var(--text);
-    margin: 2rem 0 1rem;
+    margin: 2.5rem 0 1.5rem;
+    padding: 0 1rem;
 }
 
 p {
     margin-bottom: 1.5rem;
     color: var(--secondary);
+    padding: 0 1rem;
 }
 
 /* Links */
@@ -87,7 +90,7 @@ a:hover {
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 0.375rem;
     font-weight: 500;
     text-align: center;
@@ -121,9 +124,9 @@ a:hover {
 .card {
     background-color: var(--surface);
     border-radius: 0.5rem;
-    padding: 1.5rem;
+    padding: 2rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1rem;
+    margin: 0 1rem 1.5rem;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -135,11 +138,12 @@ a:hover {
 /* Lists */
 .list {
     list-style: none;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
+    padding: 0 1rem;
 }
 
 .list li {
-    padding: 0.75rem 0;
+    padding: 1rem;
     border-bottom: 1px solid #e2e8f0;
 }
 
@@ -151,26 +155,29 @@ a:hover {
 .actions {
     display: flex;
     gap: 1rem;
-    margin: 1rem 0;
+    margin: 1.5rem;
+    padding: 0 1rem;
 }
 
 /* Forms */
 .form-card {
     max-width: 600px;
     margin: 0 auto;
+    padding: 2rem;
 }
 
 form {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 }
 
 input, select, textarea {
     width: 100%;
-    padding: 0.75rem;
+    padding: 1rem;
     margin-top: 0.5rem;
     border: 1px solid #e2e8f0;
     border-radius: 0.375rem;
@@ -186,7 +193,7 @@ input:focus, select:focus, textarea:focus {
 
 label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-weight: 500;
     color: var(--text);
 }
@@ -194,14 +201,15 @@ label {
 .help-text {
     font-size: 0.875rem;
     color: var(--secondary);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
 }
 
 .form-actions {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     display: flex;
     gap: 1rem;
     justify-content: flex-end;
+    padding: 0 1rem;
 }
 
 /* Utilities */
@@ -210,19 +218,20 @@ label {
 }
 
 .mt-4 {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .mb-4 {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Grid Layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 1.5rem;
+    margin: 1.5rem;
+    padding: 0 1rem;
 }
 
 .room-card {
@@ -239,7 +248,7 @@ label {
 .room-info {
     color: var(--secondary);
     font-size: 0.875rem;
-    margin-top: auto;
+    margin-top: 0;
 }
 
 .room-info p {
@@ -249,7 +258,7 @@ label {
 /* Tables */
 .table-responsive {
     overflow-x: auto;
-    margin: 1rem 0;
+    margin: 1.5rem;
     background: var(--surface);
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -266,12 +275,12 @@ label {
     background: var(--background);
     color: var(--text);
     font-weight: 600;
-    padding: 1rem;
+    padding: 1.5rem;
     border-bottom: 2px solid #e2e8f0;
 }
 
 .table td {
-    padding: 1rem;
+    padding: 1.5rem;
     border-bottom: 1px solid #e2e8f0;
     color: var(--secondary);
 }
@@ -284,19 +293,104 @@ label {
     background-color: #f8fafc;
 }
 
+/* Meeting Card Styles */
+.meeting-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.meeting-header a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.meeting-header a:hover {
+    color: var(--primary-dark);
+}
+
+.meeting-status {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+}
+
+.meeting-details {
+    color: var(--secondary);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
+.meeting-details p {
+    margin: 0.5rem 0;
+    padding: 0;
+}
+
+.meeting-details strong {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Amenities List */
+.amenities-list {
+    list-style: none;
+    margin: 0.5rem 0;
+    padding: 0;
+}
+
+.amenities-list li {
+    display: inline-block;
+    background-color: var(--background);
+    color: var(--secondary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0.25rem;
+    font-size: 0.75rem;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+
 .result-message {
     text-align: center;
-    padding: 2rem;
+    padding: 2.5rem;
     background: var(--surface);
     border-radius: 0.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     color: var(--secondary);
+    margin: 1.5rem;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .container {
-        padding: 0 0.5rem;
+        padding: 0 1.5rem;
     }
 
     h1 {
@@ -304,7 +398,7 @@ label {
     }
 
     .navbar {
-        padding: 1rem;
+        padding: 1rem 1.5rem;
     }
 
     .actions {

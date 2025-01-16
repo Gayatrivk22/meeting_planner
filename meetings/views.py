@@ -1,8 +1,21 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
+from django import forms
 from django.forms import modelform_factory
 
 from meetings.models import Meeting, Room, Check
+
+class CheckForm(forms.ModelForm):
+    required_amenities = forms.MultipleChoiceField(
+        choices=Room.AMENITIES,
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+        label="Required Amenities"
+    )
+
+    class Meta:
+        model = Check
+        fields = ['capacity', 'is_private', 'date', 'start_time', 'end_time', 'required_amenities']
 
 
 @login_required
@@ -33,13 +46,10 @@ def new(request):
     return render(request, "meetings/new.html",
                   {"form": form})
 
-RoomForm = modelform_factory(Check, exclude=['room'])
-
-
 @login_required
 def check(request):
     if request.method == "POST":
-        form = RoomForm(request.POST)
+        form = CheckForm(request.POST)
         if form.is_valid():
             check_data = form.cleaned_data
             # Find available rooms using the improved method
@@ -48,8 +58,8 @@ def check(request):
                 check_data['start_time'],
                 check_data['end_time'],
                 check_data['capacity'],
-                check_data['room_type'],
-                check_data['is_private']
+                check_data['is_private'],
+                check_data['required_amenities']
             )
             request.session['available_rooms'] = [
                 {
@@ -57,13 +67,14 @@ def check(request):
                     'floor': room.floor,
                     'room_number': room.room_number,
                     'capacity': room.capacity,
-                    'room_type': room.get_room_type_display()
+                    'room_type': room.room_type_display,
+                    'amenities': [dict(Room.AMENITIES)[a] for a in room.amenities]
                 }
                 for room in available_rooms
             ]
             return redirect("display")
     else:
-        form = RoomForm()
+        form = CheckForm()
     return render(request, "meetings/check.html", {"form": form})
 
 @login_required

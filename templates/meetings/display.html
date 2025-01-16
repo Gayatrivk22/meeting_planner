@@ -14,7 +14,8 @@
                         <th>Floor</th>
                         <th>Room Number</th>
                         <th>Capacity</th>
-                        <th>Room Type</th>
+                        <th>Recommended Room Type</th>
+                        <th>Amenities</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,13 @@
                             <td>{{ room.room_number }}</td>
                             <td>{{ room.capacity }} people</td>
                             <td>{{ room.room_type }}</td>
+                            <td>
+                                <ul class="amenities-list">
+                                    {% for amenity in room.amenities %}
+                                        <li>{{ amenity }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

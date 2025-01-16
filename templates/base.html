@@ -11,7 +11,7 @@
        Logged in as: {{ user.get_username }}
        <form method="post" action="{% url 'logout' %}" style="float:right">
            {% csrf_token %}
-           <button type="submit">Logout</button>
+           <button type="submit" class="btn btn-secondary">Logout</button>
        </form>
     {% else %}
        <a href="{% url 'login' %}">Login</a>
